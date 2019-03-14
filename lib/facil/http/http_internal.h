@@ -35,6 +35,8 @@ struct http_vtable_s {
   int (*const http_stream)(http_s *h, void *data, uintptr_t length);
   /** Should send existing headers or complete streaming */
   void (*const http_finish)(http_s *h);
+  /** Completes streaming silently */
+  void (*const http_complete)(http_s *h);
   /** Push for data. */
   int (*const http_push_data)(http_s *h, void *data, uintptr_t length,
                               FIOBJ mime_type);

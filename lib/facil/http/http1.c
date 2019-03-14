@@ -530,6 +530,7 @@ struct http_vtable_s HTTP1_VTABLE = {
     .http_send_body = http1_send_body,
     .http_sendfile = http1_sendfile,
     .http_finish = htt1p_finish,
+    .http_complete = http1_after_finish,
     .http_push_data = http1_push_data,
     .http_push_file = http1_push_file,
     .http_on_pause = http1_on_pause,

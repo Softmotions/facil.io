@@ -645,6 +645,17 @@ void http_finish(http_s *r) {
   add_date(r);
   ((http_vtable_s *)r->private_data.vtbl)->http_finish(r);
 }
+
+void http_complete(http_s *r) {
+  if (!r || !r->private_data.vtbl) {
+    return;
+  }
+  http_vtable_s *vtl = r->private_data.vtbl;
+  if (vtl->http_complete) {
+    vtl->http_complete(r);
+  }
+}
+
 /**
  * Pushes a data response when supported (HTTP/2 only).
  *
@@ -2068,6 +2079,11 @@ void http_write_log(http_s *h) {
   buff = fiobj_obj2cstr(l);
   fwrite(buff.data, 1, buff.len, stderr);
   fiobj_free(l);
+}
+
+intptr_t http_uuid(http_s *h) {
+  http_fio_protocol_s *p = (http_fio_protocol_s *)h->private_data.flag;
+  return p->uuid;
 }
 
 /**

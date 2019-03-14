@@ -244,6 +244,11 @@ int http_send_error(http_s *h, size_t error_code);
 void http_finish(http_s *h);
 
 /**
+ * Completes streaming, disposes http handle.
+ */
+void http_complete(http_s *h);
+
+/**
  * Pushes a data response when supported (HTTP/2 only).
  *
  * Returns -1 on error and 0 on success.
@@ -892,6 +897,12 @@ FIOBJ http_req2str(http_s *h);
  * This function is called automatically if the `.log` setting is enabled.
  */
 void http_write_log(http_s *h);
+
+/**
+ * Get socket `uuid` associated with http hanle
+ */
+intptr_t http_uuid(http_s *h);
+
 /* *****************************************************************************
 HTTP Time related helper functions that could be used globally
 ***************************************************************************** */
