@@ -656,13 +656,15 @@ void http_complete(http_s *r) {
   }
 }
 
-void http_write_headers(http_s *r) {
+ssize_t http_write_headers(http_s *r) {
   if (!r || !r->private_data.vtbl) {
-    return;
+    return -1;
   }
   http_vtable_s *vtl = r->private_data.vtbl;
   if (vtl->http_write_headers) {
-    vtl->http_write_headers(r);
+    return vtl->http_write_headers(r);
+  } else {
+    return 0;
   }
 }
 

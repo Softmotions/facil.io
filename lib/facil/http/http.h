@@ -251,7 +251,7 @@ void http_complete(http_s *h);
 /**
  * Write http headers
  */
-void http_write_headers(http_s *r);
+ssize_t http_write_headers(http_s *r);
 
 /**
  * Pushes a data response when supported (HTTP/2 only).
