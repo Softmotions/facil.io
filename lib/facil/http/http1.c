@@ -229,6 +229,15 @@ static void htt1p_finish(http_s *h) {
   }
   http1_after_finish(h);
 }
+
+/** Write http headers */
+static void http1_write_headers(http_s *h) {
+  FIOBJ packet = headers2str(h, 0);
+  if (packet) {
+    fiobj_send_free((handle2pr(h)->p.uuid), packet);
+  }
+}
+
 /** Push for data - unsupported. */
 static int http1_push_data(http_s *h, void *data, uintptr_t length,
                            FIOBJ mime_type) {
@@ -531,6 +540,7 @@ struct http_vtable_s HTTP1_VTABLE = {
     .http_sendfile = http1_sendfile,
     .http_finish = htt1p_finish,
     .http_complete = http1_after_finish,
+    .http_write_headers = http1_write_headers,
     .http_push_data = http1_push_data,
     .http_push_file = http1_push_file,
     .http_on_pause = http1_on_pause,
