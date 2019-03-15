@@ -231,10 +231,12 @@ static void htt1p_finish(http_s *h) {
 }
 
 /** Write http headers */
-static void http1_write_headers(http_s *h) {
+static ssize_t http1_write_headers(http_s *h) {
   FIOBJ packet = headers2str(h, 0);
   if (packet) {
-    fiobj_send_free((handle2pr(h)->p.uuid), packet);
+    return fiobj_send_free((handle2pr(h)->p.uuid), packet);
+  } else {
+    return 0;
   }
 }
 
