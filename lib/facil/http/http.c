@@ -656,6 +656,16 @@ void http_complete(http_s *r) {
   }
 }
 
+void http_write_headers(http_s *r) {
+  if (!r || !r->private_data.vtbl) {
+    return;
+  }
+  http_vtable_s *vtl = r->private_data.vtbl;
+  if (vtl->http_write_headers) {
+    vtl->http_write_headers(r);
+  }
+}
+
 /**
  * Pushes a data response when supported (HTTP/2 only).
  *
