@@ -71,6 +71,8 @@
     "**/.git/subtree-cache/**": true,
   },
   "cmake.configureOnOpen": false,
-  "editor.trimAutoWhitespace": false
+  "editor.trimAutoWhitespace": false,
+  "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+  "C_Cpp.configurationWarnings": "Disabled"
 }
 
