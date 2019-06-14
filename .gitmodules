@@ -1,1 +1,4 @@
 
+[submodule "mxe"]
+	path = mxe
+	url = https://github.com/mxe/mxe.git

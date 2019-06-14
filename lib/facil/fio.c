@@ -18,23 +18,26 @@ Feel free to copy, use and enjoy according to the license provided.
 #include <errno.h>
 #include <limits.h>
 #include <pthread.h>
-#include <sys/mman.h>
+
+#include "platform/mman.h"
 #include <unistd.h>
 
+#ifndef _WIN32
 #include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#endif
 
 #include <poll.h>
 #include <sys/ioctl.h>
 #include <sys/resource.h>
-#include <sys/socket.h>
+
 #include <sys/stat.h>
-#include <sys/types.h>
 #include <sys/un.h>
 #include <sys/wait.h>
-
-#include <arpa/inet.h>
 
 /* force poll for testing? */
 #ifndef FIO_ENGINE_POLL

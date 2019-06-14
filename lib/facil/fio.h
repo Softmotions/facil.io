@@ -202,9 +202,10 @@ Version and helper macros
 #define _GNU_SOURCE
 #endif
 
+#include "platform/platform.h"
+
 #include <errno.h>
 #include <limits.h>
-#include <signal.h>
 #include <stdarg.h>
 #include <stdint.h>
 #include <stdio.h>

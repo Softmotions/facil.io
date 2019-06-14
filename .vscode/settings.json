@@ -1,7 +1,6 @@
 {
   "files.insertFinalNewline": false,
-  "cmake.configureArgs": [
-  ],
+  "cmake.configureArgs": [],
   "cmake.ctestArgs": [],
   "cmake.debugConfig": {
     "cwd": "${workspaceRoot}"
@@ -59,9 +58,11 @@
     "-I${workspaceRoot}/lib/facil/tls",
   ],
   "search.exclude": {
-    "**/build": true
+    "**/build": true,
+    "**/mxe": true
   },
   "files.exclude": {
+    "**/mxe": true,
     "**/.git": true,
     "**/build": true,
   },
@@ -69,10 +70,21 @@
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
+    "**/mxe": true
   },
   "cmake.configureOnOpen": false,
   "editor.trimAutoWhitespace": false,
-  "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
-  "C_Cpp.configurationWarnings": "Disabled"
-}
+  "C_Cpp.configurationWarnings": "Disabled",
 
+  "git.autoRepositoryDetection": false,
+  "git.ignoredRepositories": [
+    "./mxe",
+    "${workspaceRoot}/mxe"
+  ],
+  "files.associations": {
+    "*.arb": "json",
+    "*.gyp": "jsonc",
+    "wait.h": "c",
+    "poll.h": "c"
+  },
+}

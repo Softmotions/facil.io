@@ -1,0 +1,10 @@
+
+https://xakep.ru/2002/05/22/15311/
+
+
+https://code.visualstudio.com/docs/cpp/config-mingw
+
+
+https://github.com/libressl-portable/portable/tree/master/include/compat
+https://github.com/videolan/vlc/tree/master/compat
+

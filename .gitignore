@@ -1,4 +1,5 @@
 /build
+/cmake-build*
 tmp/*
 html/
 public_www/
@@ -7,11 +8,15 @@ libdump
 docs/_site
 lib/bearssl/
 
+/.idea
+
 /src/
 
-.gitignore
+#.gitignore
+#.gitmodules
+
 .DS_Store
-.gitmodules
+.vscode/ipch
 
 callgrind*
 docs/assets/styles/main.css.map
