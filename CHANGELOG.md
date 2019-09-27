@@ -1,5 +1,23 @@
 # Change Log
 
+### v. 0.7.3
+
+**Fix**: (`fio`) fixes an issue where timer cleanup wasn't performed after `fio_stop` (or SIGINT/SIGTERM). No a "clean slate" will be provided if `fio_start` is called more then once. Note: this may **break previous behavior**, which should be considered undocumented and unexpected behavior. (this fax **may** be deferred to version 0.8.x, still undecided). Credit to @fbrausse for opening issue #72. 
+
+**Fix**: (`fio`) fixes an issue where timer cleanup would be performed after the `AT_EXIT` state callbacks. Now the timer cleanup callbacks will be performed **before** the `AT_EXIT` callback (as they should). (See issue #72).
+
+**Fix**: (`fio`) fixes an issue where timer cleanup would be performed after the `AT_EXIT` state callbacks. Now the timer cleanup callbacks will be performed **before** the `AT_EXIT` callback (as they should). (See issue #72).
+
+**Fix**: (`fio`) fixes signal handler (re)establishment test to prevent recursive signal calling.
+
+### v. 0.7.2
+
+**Fix**: (`fio_tls`) fixes a memory leak in the trusted certificate chain. Credit to @fbrausse for opening PR #71.
+
+**Fix**: (`fio_tls`) fixes compilation / linking flags (including a bug caused by the `gcc` optimizer `-fipa-icf`) and improves support for OpenSSL using `pkg-config`. Credit to @fbrausse for PR #71.
+
+**Fix**: (`http1`) fixes a race-condition between the `on_ready` and `on_data` events, that could result in the `on_data` event being called twice instead of once (only possible with some clients). On multi-threaded workers, this could result in the CPU spinning while the task lock remains busy. Credit to Néstor Coppi (@Shelvak) for exposing the issue and providing an example application with detailed reports. Issue #75.
+
 ### v. 0.7.1
 
 **Security**: a heap-overflow vulnerability was fixed in the WebSocket parser, which could have been triggered by a maliciously crafted message-header. Credit to Dane (4cad@silvertoque) for exposing this issue and providing a Python script demonstrating the attack. 

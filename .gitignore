@@ -1,4 +1,3 @@
-/build
 tmp/*
 html/
 public_www/
@@ -18,3 +17,7 @@ docs/assets/styles/main.css.map
 tests/xxhash.h
 tests/xxhash.c
 tests/words.txt
+/.idea/
+/.vscode/ipch/
+/build/
+/cmake-build-debug/
