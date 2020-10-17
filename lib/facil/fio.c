@@ -207,6 +207,8 @@ typedef struct {
   uint8_t volatile active;
   /* worker process flag - true also for single process */
   uint8_t is_worker;
+  /* no signal handlers */
+  uint8_t is_no_signal_handlers;
   /* polling and global lock */
   fio_lock_i lock;
   /* The highest active fd with a protocol object */
@@ -3915,7 +3917,10 @@ FIO_FUNC void fio_start_(void) {} /* marker for SublimeText3 jump feature */
  */
 void fio_start FIO_IGNORE_MACRO(struct fio_start_args args) {
   fio_expected_concurrency(&args.threads, &args.workers);
-  fio_signal_handler_setup();
+
+  if (!fio_data->is_no_signal_handlers) {
+    fio_signal_handler_setup();
+  }
 
   fio_data->workers = (uint16_t)args.workers;
   fio_data->threads = (uint16_t)args.threads;

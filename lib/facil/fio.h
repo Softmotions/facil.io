@@ -939,6 +939,8 @@ struct fio_start_args {
   int16_t threads;
   /** The number of worker processes to run. See `threads`. */
   int16_t workers;
+  /* no signal handlers */
+  uint8_t is_no_signal_handlers;
 };
 
 /**
