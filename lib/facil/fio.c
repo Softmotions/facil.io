@@ -3543,7 +3543,10 @@ static void __attribute__((destructor)) fio_lib_destroy(void) {
   fio_state_callback_clear_all();
   fio_defer_perform();
   fio_poll_close();
-  fio_free(fio_data);
+  void *p = fio_data;
+  fio_data = 0;
+  __sync_synchronize();
+  fio_free(p);
   /* memory library destruction must be last */
   fio_mem_destroy();
   FIO_LOG_DEBUG("(%d) facil.io resources released, exit complete.",
